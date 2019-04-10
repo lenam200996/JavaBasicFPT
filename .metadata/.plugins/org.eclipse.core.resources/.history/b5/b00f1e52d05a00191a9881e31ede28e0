@@ -1,0 +1,14 @@
+package com.namle.main;
+
+import com.namle.data.QuanLy;
+import com.namle.sql.ConnectSQL;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		QuanLy ql = new QuanLy();
+		
+	}
+
+}

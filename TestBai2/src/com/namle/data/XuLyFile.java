@@ -1,0 +1,99 @@
+package com.namle.data;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
+
+import com.namle.model.ThanhVien;
+
+public class XuLyFile {
+
+	private RandomAccessFile raf_data1;
+	private RandomAccessFile raf_data2;
+	private RandomAccessFile raf_error;
+	private File file_data1;
+	private File file_data2;
+	private File file_error;
+	
+	public XuLyFile() {
+		super();
+		file_data1 = new File("D:\\JAVABasic\\TestBai2\\src\\com\\namle\\data\\data1.txt");
+		file_data2 = new File("D:\\JAVABasic\\TestBai2\\src\\com\\namle\\data\\data2.txt");
+		file_error = new File("D:\\JAVABasic\\TestBai2\\src\\com\\namle\\data\\error.txt");
+		try {
+			raf_data1 = new RandomAccessFile(file_data1, "rw");
+			raf_data2 = new RandomAccessFile(file_data2, "rw");
+			raf_error = new RandomAccessFile(file_error, "rw");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void readFile(ArrayList<ThanhVien> arrThanhVien) {
+		
+		try {
+			raf_data1.seek(0);
+			while(raf_data1.getFilePointer() < raf_data1.length()) {
+				String dataLine = raf_data1.readLine();
+				String[] dataLineArr = dataLine.split(", ");
+				
+				ThanhVien tv = new ThanhVien(dataLineArr[0], dataLineArr[1],dataLineArr[2], dataLineArr[3], dataLineArr[4], dataLineArr[5],0.0);
+				arrThanhVien.add(tv);
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void readFileData2(ArrayList<ThanhVien> arrThanhVien) {
+		try {
+			raf_data2.seek(0);
+			int line = 1;
+			while(raf_data2.getFilePointer() < raf_data2.length()) {
+				String dataLine = raf_data2.readLine();
+				String[] dataLineArr = dataLine.split(", ");
+				
+				if(KiemTraLoi.kiemTraLoiDuLieu(dataLineArr,arrThanhVien) != "") {
+					String strError = "Dong "+line+": "+KiemTraLoi.kiemTraLoiDuLieu(dataLineArr,arrThanhVien)+"\n";
+					writeFile(strError);
+					
+				}else {
+				
+				for(ThanhVien tv : arrThanhVien) {
+					if(tv.getMaThanhVien().equals(dataLineArr[0])) {
+						if(dataLineArr[2].equals("VIP")) {
+							tv.setChiPhiNhan(tv.getChiPhiNhan()+(Double.parseDouble(dataLineArr[1])*50000));
+						}else {
+							tv.setChiPhiNhan(tv.getChiPhiNhan()+(Double.parseDouble(dataLineArr[1])*20000));
+						}
+					}
+				}
+				}
+				line++;
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void writeFile(String data) {
+		try {
+			raf_error.writeBytes(data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+}

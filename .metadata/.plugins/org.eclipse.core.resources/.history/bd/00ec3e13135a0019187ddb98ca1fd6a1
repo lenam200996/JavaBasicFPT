@@ -1,0 +1,171 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
+public class Form extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Form frame = new Form();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Form() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(10, 11, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		textField = new JTextField();
+		textField.setBounds(99, 8, 284, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(99, 40, 211, 20);
+		
+		comboBox.addItem("Đếm từ");
+		comboBox.addItem("Đếm lặp từ");
+		comboBox.addItem("Đảo chuỗi");
+		
+		contentPane.add(comboBox);
+		
+		
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(99, 71, 284, 101);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("View");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String data = textField.getText().trim();
+				ArrayList<String> arr = new ArrayList<String>();
+				String[] dataSplit = data.split(" +");
+				/*
+				for(int i =0;i< dataSplit.length;i++) {
+					textField_1.setText(textField_1.getText()+dataSplit[i]+";");
+				}
+				
+				for(int i = 0;i< dataSplit.length;i++) {
+					if(!dataSplit[i].trim().isEmpty()) {
+						arr.add(dataSplit[i]);
+					}
+				}
+				*/
+				
+				// đem từ
+				if(comboBox.getSelectedItem().toString().equals("Đếm từ")) {
+					textField_1.setText("");
+					textField_1.setText("số từ: "+dataSplit.length);
+					return;
+				}
+				
+				// dem lap từ
+				if(comboBox.getSelectedItem().toString().equals("Đếm lặp từ")) {
+					textField_1.setText("");
+					for( int i = 0 ; i < dataSplit.length;i++) {
+						
+						if(!checkDuplicate(i, dataSplit)) {
+							textField_1.setText(textField_1.getText()+"\n"+dataSplit[i]);
+							int dem = 0;
+							for(int j = i;j<dataSplit.length;j++) {
+								if(dataSplit[i].equals(dataSplit[j])) {
+									dem++;
+								}
+							}
+							textField_1.setText(textField_1.getText()+dem);
+						}else {
+							continue;
+						}
+						
+						
+					}
+					return;
+				}
+				
+				
+				//đảo chuỗi
+				if(comboBox.getSelectedItem().toString().equals("Đảo chuỗi")) {
+					textField_1.setText("");
+					for(int i = 0 ; i<dataSplit.length/2;i++) {
+							String tg = dataSplit[i];
+							dataSplit[i] = dataSplit[dataSplit.length - (3*i)];
+							dataSplit[dataSplit.length - (3*i)] = tg;
+						
+					}
+					
+					for(int i = 0 ;i<dataSplit.length ; i++) {
+						textField_1.setText(textField_1.getText()+dataSplit[i]+" ");
+					}
+					return;
+				}
+				
+			}
+		});
+		btnNewButton.setBounds(96, 206, 89, 23);
+		
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Reset");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				textField.setText("");
+			}
+		});
+		btnNewButton_1.setBounds(198, 206, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Exit");
+		btnNewButton_2.setBounds(310, 206, 89, 23);
+		contentPane.add(btnNewButton_2);
+	}
+	
+	
+	public boolean checkDuplicate(int index,String[] data) {
+		for(int i = 0 ;i<index;i++) {
+			if(data[i].equals(data[index])) {
+				return true;
+			}
+		}
+		return false;
+	}
+}

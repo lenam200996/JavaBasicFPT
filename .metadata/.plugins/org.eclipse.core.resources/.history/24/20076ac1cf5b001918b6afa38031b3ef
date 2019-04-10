@@ -1,0 +1,21 @@
+package com.namle.controller;
+
+import java.util.ArrayList;
+
+import com.namle.data.XuLyFile;
+import com.namle.model.ThanhVien;
+
+public class QuanLy {
+	private XuLyFile xuLyFile ;
+	private static ArrayList<ThanhVien> arrThanhVien;
+	public QuanLy() {
+		super();
+		xuLyFile = new XuLyFile();
+		arrThanhVien = new ArrayList<ThanhVien>();
+		xuLyFile.readFileData1(arrThanhVien);
+		
+	}
+	
+	
+
+}

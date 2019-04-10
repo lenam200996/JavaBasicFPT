@@ -1,0 +1,11 @@
+package com.namle.model;
+
+public class ThanhVien {
+	private String maThanhVien;
+	private String hoTenThanhVien;
+	private String ngaySinh;
+	private String diaChi;
+	private String email;
+	private String soDienThoai;
+	private Double chiPhiNhan;
+}

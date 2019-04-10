@@ -1,0 +1,13 @@
+package com.namle.main;
+
+import com.namle.sql.CoSoDuLieu;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		CoSoDuLieu csdl = new CoSoDuLieu();
+		csdl.connectDB(); // gọi hàm connectDB
+	}
+
+}

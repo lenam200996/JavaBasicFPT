@@ -1,0 +1,9 @@
+package com.namle.data;
+
+public class KiemTraLoi {
+ public static String kiemTraLoiDuLieu(String[] data) {
+	 String err = "";
+	 
+	 return err;
+ }
+}

@@ -1,0 +1,22 @@
+package com.namle.data;
+
+import java.io.File;
+import java.io.RandomAccessFile;
+
+public class XuLyFile {
+	private RandomAccessFile raf_data1;
+	private RandomAccessFile raf_data2;
+	private RandomAccessFile raf_error;
+	
+	private File file_data1;
+	private File file_data2;
+	private File file_error;
+	public XuLyFile() {
+		super();
+		file_data1 = new File(""); // lấy đường dẫn file
+	}
+	
+	
+
+
+}

@@ -1,0 +1,24 @@
+package com.namle.sql;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConnectSQL {
+	private Connection con = null ;
+	public void connectDB() {
+		//String stringConnect = "jdbc:sqlserver://localhost:1433;databaseName=DbTourDuLich_0076;integratedSecurity=True";
+		String stringConnect = "jdbc:sqlserver://localhost:1433;databaseName=DbTourDuLich_0076;";
+		String username = "sa";
+		String password = "123456";
+		
+		 try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			con = DriverManager.getConnection(stringConnect,username,password);
+			System.out.println("thanh cong!!");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+	}
+	
+}

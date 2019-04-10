@@ -1,0 +1,83 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+
+public class FormMain extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FormMain frame = new FormMain();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FormMain() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNhpChui = new JLabel("Nh\u1EADp chu\u1ED7i");
+		lblNhpChui.setBounds(10, 11, 71, 14);
+		contentPane.add(lblNhpChui);
+		
+		textField = new JTextField();
+		textField.setBounds(91, 8, 269, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblThcHin = new JLabel("Th\u1EF1c hi\u1EC7n");
+		lblThcHin.setBounds(10, 56, 71, 14);
+		contentPane.add(lblThcHin);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(91, 53, 138, 20);
+		contentPane.add(comboBox);
+		
+		JLabel lblKtQu = new JLabel("K\u1EBFt qu\u1EA3");
+		lblKtQu.setBounds(10, 101, 54, 14);
+		contentPane.add(lblKtQu);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(89, 98, 271, 77);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("View");
+		btnNewButton.setBounds(74, 214, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Reset");
+		btnNewButton_1.setBounds(184, 214, 89, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("Exit");
+		btnNewButton_2.setBounds(298, 214, 89, 23);
+		contentPane.add(btnNewButton_2);
+	}
+}

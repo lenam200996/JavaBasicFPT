@@ -1,0 +1,27 @@
+package com.namle.data;
+
+import java.util.ArrayList;
+
+import com.namle.model.ThanhVien;
+
+public class QuanLy {
+
+	private XuLyFile xuLyFile;
+	private ArrayList<ThanhVien> arrThanhVien;
+	public QuanLy() {
+		super();
+		xuLyFile = new XuLyFile();
+		arrThanhVien = new ArrayList<ThanhVien>();
+		
+		xuLyFile.readFile(arrThanhVien);
+		
+	}
+	
+	public void saveDB() {
+		for(ThanhVien tv : arrThanhVien) {
+			tv.saveDB();
+		}
+	}
+	
+	
+}

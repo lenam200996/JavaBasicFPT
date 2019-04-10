@@ -1,0 +1,28 @@
+package com.namle.data;
+
+import com.namle.sql.ConnectSQL;
+
+public class KiemTraLoi {
+ public static String kiemTraLoiDuLieu(String[] data) {
+	 ConnectSQL con = new ConnectSQL();
+	 con.connectDB();
+	 String err = "";
+	 if(con.kiemTraTonTaiMa(data[0])) {
+		 err += "Ma thanh vien chua ton tai!,";
+	 }
+	 
+	 if(Double.parseDouble(data[1]) <0.0 ) {
+		 err += " Diem thuong khong phai la so nguyen duong,";
+	 }
+	 
+
+	 if(Double.parseDouble(data[1]) > 500 ) {
+		 err += " Diem thuong lon hon 500,";
+	 }
+	 
+	 if(!data[2].equals("VIP") && !data[2].equals("NOR")) {
+		 err+= " Level khong phai dang VIP hoac NOR";
+	 }
+	 return err;
+ }
+}
